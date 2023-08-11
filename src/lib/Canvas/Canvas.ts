@@ -7,6 +7,7 @@ export class Canvas{
         this.dom.width = size.x;
         this.dom.height = size.y;
         parent.appendChild(this.dom);
+        this.fill();
     }
     public getImage(){
         return this.ctx.getImageData(0,0,this.size.x,this.size.y);
@@ -17,8 +18,20 @@ export class Canvas{
         this.ctx.lineTo(end.x,end.y);
         this.ctx.stroke();
     }
+    public rect(start:Vector, end:Vector, color:string="black"){
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = color;
+        this.ctx.rect(start.x,start.y,end.x-start.x,end.y-start.y);
+        this.ctx.stroke();
+        this.ctx.closePath();
+    }
     public clear(){
         this.ctx.clearRect(0,0,this.size.x,this.size.y);
+    }
+    public fill(){
+        this.ctx.beginPath();
+        this.ctx.fillStyle = "white";
+        this.ctx.fillRect(0,0,this.size.x,this.size.y);
     }
     public drawImage(img:CanvasImageSource){
         this.ctx.drawImage(img,0,0, this.size.x, this.size.y);
@@ -28,6 +41,7 @@ export class Canvas{
         this.ctx.beginPath();
         this.ctx.arc(pos.x,pos.y,size,0,2*Math.PI);
         this.ctx.fill();
+        this.ctx.closePath();
     }
     public addEvent(type:string, callback:any){
         this.dom.addEventListener(type,callback);
