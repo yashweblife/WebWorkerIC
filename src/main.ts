@@ -29,10 +29,10 @@ canvas.addEvent("mousemove",(e:MouseEvent)=>{
         points = [];
     }
 })
-document.body.addEventListener("mousedown",(e:MouseEvent)=>{
+document.body.addEventListener("mousedown",()=>{
     mouse.clicked = true;
 })
-document.addEventListener("mouseup",(e:MouseEvent)=>{
+document.addEventListener("mouseup",()=>{
     for(let i=0;i<points.length-1;i++){
         canvas.line(points[i],points[i+1]);
     } 
